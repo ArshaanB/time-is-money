@@ -1,16 +1,18 @@
 <div class="container">
-  <div class="row">
+  <div id="myheader" *ngIf="displayHeader" class="row">
     <div class="col-1"></div>
     <div class="col-10">
-        <h1>Time is money,</h1>
+        <h1 class="text-center" [@headerAnimation]="getHeaderAnimation()" (@headerAnimation.start)="onAnimationEventStart($event)" (@headerAnimation.done)="onAnimationEventDone($event)">Time is money,</h1>
+        <h1 class="text-center" [@headerAnimation]="getHeaderAnimation()" (@headerAnimation.start)="onAnimationEventStart($event)" (@headerAnimation.done)="onAnimationEventDone($event)">don't you want more?</h1>
     </div>
     <div class="col-1"></div>
   </div>
-  <div class="row">
-      <div class="col-1"></div>
-      <div class="col-10">
-          <h1>don't you want more?</h1>
-      </div>
-      <div class="col-1"></div>
+  <div class="row mt-1" [@logoAnimation]="getLogoAnimation()">
+    <h2>Time = Money</h2>
+  </div>
+  <div *ngIf="displayBody" class="row">
+    <div class="col">
+      <p [@bodyAnimation]="getBodyAnimation()">If time is money, you need to conserve your time.</p>
     </div>
+  </div>
 </div>
