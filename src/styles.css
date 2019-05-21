@@ -1,3 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display&display=swap');
 /* pink-bluegrey.css */
+ body {
+   background-color: #00b159;
+ }
