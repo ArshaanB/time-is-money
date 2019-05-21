@@ -48,6 +48,7 @@ import { state, style, transition, animate, trigger, keyframes } from '@angular/
       ]),
       transition('* => *', [
         animate('1s 1s ease-in')
+        // 1s
       ])
     ]),
     trigger('body2Animation', [
@@ -62,6 +63,7 @@ import { state, style, transition, animate, trigger, keyframes } from '@angular/
       ]),
       transition('* => *', [
         animate('1s 2.5s ease-in')
+        // 2.5s
       ])
     ]),
     trigger('body3Animation', [
@@ -76,6 +78,7 @@ import { state, style, transition, animate, trigger, keyframes } from '@angular/
       ]),
       transition('* => *', [
         animate('2s 4.5s ease-in')
+        // 4.5s
       ])
     ]),
     trigger('body4Animation', [
@@ -90,6 +93,22 @@ import { state, style, transition, animate, trigger, keyframes } from '@angular/
       ]),
       transition('* => *', [
         animate('2s 7s ease-in')
+        // 7s
+      ])
+    ]),
+    trigger('body5Animation', [
+      state('void', style({
+        opacity: 0
+      })),
+      state('notvoid', style({
+        opacity: 1
+      })),
+      transition('* => void', [
+        animate('1s')
+      ]),
+      transition('* => *', [
+        animate('2s 9s ease-in')
+        // 9s
       ])
     ])
   ]
@@ -103,6 +122,7 @@ export class AppComponent implements OnInit {
   isBody2Animation = 'void';
   isBody3Animation = 'void';
   isBody4Animation = 'void';
+  isBody5Animation = 'void';
   startingBody = true;
 
   ngOnInit() {}
@@ -124,5 +144,6 @@ export class AppComponent implements OnInit {
     this.isBody2Animation = 'notvoid';
     this.isBody3Animation = 'notvoid';
     this.isBody4Animation = 'notvoid';
+    this.isBody5Animation = 'notvoid';
   }
 }

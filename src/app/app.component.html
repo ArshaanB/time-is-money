@@ -14,10 +14,44 @@
   </div>
   <div class="mybody" *ngIf="displayBody" class="row">
     <div class="col">
-      <p [@body1Animation]="isBody1Animation">Since time is money, you need to conserve your time.</p>
-      <p [@body2Animation]="isBody2Animation">But how?</p>
-      <p [@body3Animation]="isBody3Animation">For any given task, I'll help you calculate whether you should do it.</p>
-      <p [@body4Animation]="isBody4Animation">Begin by entering a few details about yourself below, and I'll let you know what I think.</p>
+      <p><span [@body1Animation]="isBody1Animation">Since time is money, you need to conserve your time.</span><span [@body2Animation]="isBody2Animation"> But how?</span></p>
+      <p [@body3Animation]="isBody3Animation">For any given task, I'll help you calculate whether you should do it, or you should get someone else to do it for you.</p>
+      <p [@body4Animation]="isBody4Animation">Begin by entering a couple details about yourself below, and I'll let you know what I think.</p>
+    </div>
+  </div>
+  <div id="myform" class="row">
+    <div class="col">
+      <form class="bg-muted p-2 rounded text-white" [@body5Animation]="isBody5Animation" >
+        <div class="row">
+          <div class="col-sm-6">
+            <small class="text-white">Enter your yearly after-tax income here.</small>
+            <input type="text" class="form-control" placeholder="After-Tax Income">
+          </div>
+          <div class="col-sm-6">
+            <small class="d-block" style="color: #ffc425">If you don't know your yearly after-tax income fill out this column instead!</small>
+            <small class="text-white">Enter your yearly income.</small>
+            <input type="text" class="form-control" placeholder="Income">
+            <small class="text-white">Now estimate your tax rate from the dropdown, 30% is the average for Canadians.</small>
+            <div class="form-group">
+                <label for="taxrate">Tax Rate</label>
+                <select class="form-control" id="taxrate">
+                  <option>0%</option>
+                  <option>10%</option>
+                  <option>20%</option>
+                  <option selected="selected">30%</option>
+                  <option>40%</option>
+                  <option>50%</option>
+                  <option>60%</option>
+                </select>
+              </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary mt-2 p-2 w-50">Submit</button>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 </div>
