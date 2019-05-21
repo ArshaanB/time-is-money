@@ -7,12 +7,17 @@
     </div>
     <div class="col-1"></div>
   </div>
-  <div class="row mt-1" [@logoAnimation]="getLogoAnimation()">
-    <h2>Time = Money</h2>
-  </div>
-  <div *ngIf="displayBody" class="row">
+  <div id="mylogo" class="row mt-2" [@logoAnimation]="getLogoAnimation()">
     <div class="col">
-      <p [@bodyAnimation]="getBodyAnimation()">If time is money, you need to conserve your time.</p>
+        <h2>Time <span>=</span> Money</h2>
+    </div>
+  </div>
+  <div class="mybody" *ngIf="displayBody" class="row">
+    <div class="col">
+      <p [@body1Animation]="isBody1Animation">Since time is money, you need to conserve your time.</p>
+      <p [@body2Animation]="isBody2Animation">But how?</p>
+      <p [@body3Animation]="isBody3Animation">For any given task, I'll help you calculate whether you should do it.</p>
+      <p [@body4Animation]="isBody4Animation">Begin by entering a few details about yourself below, and I'll let you know what I think.</p>
     </div>
   </div>
 </div>
