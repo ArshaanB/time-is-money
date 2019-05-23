@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { state, style, transition, animate, trigger, keyframes } from '@angular/animations';
+import { NgForm } from '@angular/forms';
 
 // Colour Palette: https://www.color-hex.com/color-palette/700
 
@@ -71,9 +72,12 @@ export class AppComponent implements OnInit {
   option1;
 
   // Form Related Variables
+  afterTaxIncomeKnown = "option1";
   taxRates = [10, 20, 30, 40, 50, 60];
   afterTaxIncome;
-  afterTaxIncomeKnown = false;
+  preTaxIncome;
+  chosenTaxRate = "30%";
+  submitted = false;
 
   ngOnInit() {}
   constructor() {}
@@ -93,5 +97,17 @@ export class AppComponent implements OnInit {
       return "selected";
     }
     return "";
+  }
+  onSubmit(form: NgForm) {
+    this.submitted = true;
+  }
+  randomizeForm() {
+    let random = Math.floor(Math.random() * 5);
+    let rPreTaxIncome = [20000, 50000, 60000, 100000, 250000];
+    let rTaxRate = ["20%", "30%", "40%", "50%", "60%"];
+    this.preTaxIncome = rPreTaxIncome[random];
+    this.chosenTaxRate = rTaxRate[random];
+    this.afterTaxIncome = Math.floor(this.preTaxIncome *
+                          (1 - (Number(this.chosenTaxRate.slice(0, 2)) / 100)));
   }
 }

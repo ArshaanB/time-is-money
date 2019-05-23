@@ -5,6 +5,7 @@
   color: white;
   font-family: 'Assistant', Arial, Helvetica, sans-serif;
   cursor: pointer;
+  font-weight: bold;
 }
 .navigation nav a:hover {
   color: white;
@@ -28,14 +29,18 @@
 /*
   BODY SECTION
 */
+.body {
+  margin-top: 4rem;
+}
 .body p {
   font-family: 'Assistant', Arial, Helvetica, sans-serif;
   font-size: 1.5rem;
   color: white;
 }
-.body #form #radioYes {
-  margin-left: 6rem;
+.body #form #submit button {
+  width: 49%;
 }
-.body #form #radioNo {
-  margin-left: 2rem;
+.body #result p span,
+.body #result table td {
+  color: black;
 }

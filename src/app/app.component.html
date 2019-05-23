@@ -1,5 +1,5 @@
 <section class="navigation">
-  <nav [@logoAnimation]="isLogoAnimation" class="navbar fixed-bottom" routerLink="/">
+  <nav [@logoAnimation]="isLogoAnimation" class="navbar fixed-top" routerLink="/">
       <a class="navbar-brand">Time <span>=</span> Money</a>
   </nav>
 </section>
@@ -21,55 +21,83 @@
     <div id="explanation" class="row mt-3">
       <div class="col">
         <p>
-          <span [@body1Animation]="isBody1Animation">Since time is money, you need to conserve your time. </span>
+          <span [@body1Animation]="isBody1Animation">Since time is money, you need to think wisely about how you spend your time. </span>
           <span [@body2Animation]="isBody2Animation">But how?</span></p>
         <p [@body3Animation]="isBody3Animation">For any task, I'll help you calculate whether you should do it, or get someone else to do it for you.</p>
         <p [@body4Animation]="isBody4Animation">Begin by entering a couple details about yourself below, and I'll let you know what I think.</p>
       </div>
     </div>
 
-    <div id="form" class="row">
+    <div id="form" class="row" [hidden]="submitted">
       <div class="col">
-        <form class="text-white" [@body5Animation]="isBody5Animation" #f="ngForm">
+        <form class="text-white" [@body5Animation]="isBody5Animation" #f="ngForm" (ngSubmit)="onSubmit(f)">
           <div class="row">
-            <div class="col-sm-6 offset-sm-3">
+            <div class="col-sm-6 offset-sm-3 d-flex flex-row justify-content-between">
               <label>Do you know your yearly after-tax income?</label>
-              <div id="radioYes" class="form-check d-inline-block">
-                <input class="form-check-input" type="radio" name="after-tax-income" id="yes" value="option1" checked [(ngModel)]="option1">
-                <label class="form-check-label" for="yes">Yes</label>
-              </div>
-              <div id="radioNo" class="myradio2 form-check d-inline-block">
-                <input class="form-check-input" type="radio" name="after-tax-income" id="no" value="option2">
-                <label class="form-check-label" for="no">No</label>
+              <div>
+                <div id="radioYes" class="form-check d-inline-block mr-2">
+                  <input class="form-check-input" type="radio" name="knownAfterTaxIncome" id="yes" value="option1" checked [(ngModel)]="afterTaxIncomeKnown">
+                  <label class="form-check-label" for="yes">Yes</label>
+                </div>
+                <div id="radioNo" class="myradio2 form-check d-inline-block ml-2">
+                  <input class="form-check-input" type="radio" name="knownAfterTaxIncome" id="no" value="option2" [(ngModel)]="afterTaxIncomeKnown">
+                  <label class="form-check-label" for="no">No</label>
+                </div>
               </div>
             </div>
           </div>
-          <div class="row" *ngIf="afterTaxIncomeKnown">
+          <div class="row" *ngIf="afterTaxIncomeKnown == 'option1'">
             <div class="col-sm-6 offset-sm-3">
               <label>Yearly After-Tax Income</label>
-              <input type="text" class="form-control" placeholder="Enter After-Tax Income">
+              <input type="text" name="afterTaxIncome" class="form-control" placeholder="Enter After-Tax Income" [(ngModel)]="afterTaxIncome" required>
             </div>
           </div>
-          <div class="row" *ngIf="!afterTaxIncomeKnown">
+          <div class="row" *ngIf="afterTaxIncomeKnown != 'option1'">
             <div class="col-sm-6 offset-sm-3">
               <label>Yearly Income</label>
-              <input type="text" class="form-control mb-2" placeholder="Enter Income">
+              <input type="text" class="form-control mb-2" placeholder="Enter Income" name="preTaxIncome" [(ngModel)]="preTaxIncome" required>
               <div class="form-group">
                 <label for="taxrate" class="d-block mb-0">Tax Rate</label>
                 <small>Now estimate your tax rate from the dropdown, 30% is the average for Canadians.</small>
-                <select class="form-control" id="taxrate">
+                <select class="form-control" id="taxrate" name="taxRate" [(ngModel)]="chosenTaxRate" required>
                   <option *ngFor="let rate of taxRates" [selected]="isSelected(rate)">{{ rate }}%</option>
                 </select>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col d-flex justify-content-center">
-              <button type="submit" class="btn btn-primary mt-2 p-2 w-50">Next</button>
+          <div id="submit" class="row">
+            <div class="col d-flex flex-column align-items-center justify-content-center">
+              <button type="submit" class="btn btn-primary mt-2 p-2" [disabled]="!f.form.valid">Submit</button>
+              <button id="randomize" type="button" class="btn btn-secondary mt-2 p-2" (click)="randomizeForm()">Randomize</button>
             </div>
           </div>
         </form>
       </div>
+    </div>
+
+    <div id="result" [hidden]="!submitted">
+      <hr>
+      <p>You currently make <span>{{ afterTaxIncome | currency }}</span> in after-tax income, lets make some simple observations. The table below shows how much a certain period of time is worth to you financially.</p>
+      <p></p>
+      <table class="table text-white">
+          <thead>
+            <tr>
+              <th scope="col">1 Hour</th>
+              <th scope="col">15 Minutes</th>
+              <th scope="col">1 Minute</th>
+              <th scope="col">1 Day</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ (afterTaxIncome / 8760) | currency }}</td>
+              <td>{{ ((afterTaxIncome / 8760) * 4) | currency }}</td>
+              <td>{{ (((afterTaxIncome / 8760) / 4) / 15) | currency }}</td>
+              <td>{{ (afterTaxIncome / 365) | currency }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>You will be able to add your own personal customizations soon. This app is currently under development.</p>
     </div>
 
   </div>
