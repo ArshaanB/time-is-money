@@ -1,21 +1,41 @@
-h1, h2, p {
-  font-family: 'Raleway', Arial, sans-serif;
+/*
+  NAVIGATION SECTION
+*/
+.navigation nav a {
+  color: white;
+  font-family: 'Assistant', Arial, Helvetica, sans-serif;
+  cursor: pointer;
+}
+.navigation nav a:hover {
+  color: white;
+}
+.navigation nav a span {
+  color: #0040db;
+}
+
+/*
+  ATTENTION SECTION
+*/
+.attention {
+  margin-top: 8rem;
+}
+.attention h1 {
+  font-family: 'Playfair Display', Arial, Helvetica, sans-serif;
   font-size: 5rem;
   color: white;
 }
-h2 {
-  font-size: 1.5rem;
-}
-p {
-  font-size: 1.5rem;
-}
 
-#myheader {
-  margin-top: 8rem;
+/*
+  BODY SECTION
+*/
+.body p {
+  font-family: 'Assistant', Arial, Helvetica, sans-serif;
+  font-size: 1.5rem;
+  color: white;
 }
-#mylogo h2 {
-  cursor: pointer;
+.body #form #radioYes {
+  margin-left: 6rem;
 }
-#mylogo h2 span {
-  color: #0040db;
+.body #form #radioNo {
+  margin-left: 2rem;
 }

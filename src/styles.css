@@ -1,8 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-@import url('https://fonts.googleapis.com/css?family=Montserrat|Raleway&display=swap');
-/* @import url('https://fonts.googleapis.com/css?family=Playfair+Display&display=swap'); */
-/* pink-bluegrey.css */
- body {
-   background-color: #00b159;
+@import url('https://fonts.googleapis.com/css?family=Assistant|Playfair+Display&display=swap');
+
+body {
+  /*
+  This is the original shade of green chosen.
+  background-color: #00b159;
+  */
+  background-color: #4cc88a;
  }
