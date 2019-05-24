@@ -55,6 +55,16 @@
   color: black;
   font-size: 1rem;
 }
-.body #result #configurations #finePrint {
-  font-size: 0.9rem;
+.body #result #configurations #accordion button {
+  color: black;
+}
+.body #result #configurations #accordion button:hover {
+  text-decoration: none;
+}
+.body #result #configurations #accordion i {
+  cursor: pointer;
+}
+.body #result #configurations #accordion p {
+  color: black;
+  font-size: 1rem;
 }

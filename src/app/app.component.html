@@ -78,7 +78,7 @@
     <div id="result" [hidden]="!submitted">
       <p>You currently make <span>{{ afterTaxIncome | currency }}</span> in after-tax income, lets make some simple observations. The table below shows how much a certain period of time is worth to you financially.</p>
       <p></p>
-      <table class="table text-white">
+      <table class="table text-white text-center">
         <thead>
           <tr>
             <th scope="col">1 Minute</th>
@@ -134,23 +134,41 @@
         </div>
       </div>
       <hr>
-      <div id="configurations">
-        <p>Below are some of the default configurations, feel free to edit them to your liking and see how the above results change!</p>
-        <form class="row text-white container" #fConfig="ngForm">
-            <div class="form-group col-sm-4">
-              <label for="hoursOfSleep">Average Hours of Sleep Daily</label>
-              <select class="form-control" id="hoursOfSleep" name="hoursSlept" [(ngModel)]="hoursSlept" (input)="updateHumanTimes()">
-                <option *ngFor="let hour of hours">{{ hour }}</option>
-              </select>
+      <div id="configurations" class="mb-3">
+        <div id="accordion">
+          <div class="card">
+            <div class="card-header" id="headingOne">
+              <h5 class="mb-0">
+                <div class="d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                  <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    Edit Default Configurations
+                  </button>
+                  <i class="fas fa-chevron-down" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"></i>
+                </div>
+              </h5>
             </div>
-            <div class="form-group col-sm-4">
-                <label for="hoursOfWork">Average Hours of Work Daily</label>
-                <select class="form-control" id="hoursOfWork" name="hoursSlept" [(ngModel)]="hoursWorked" (input)="updateHumanTimes()">
-                  <option *ngFor="let hour of hours">{{ hour }}</option>
-                </select>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+              <div class="card-body">
+                <p>The below sleep and work hours are not included in the calculaton for hours remaining in a day. They are considered "sunk costs" much like your taxes were considered sunk costs and removed from the income we considered.</p>
+                <form class="row container" #fConfig="ngForm">
+                  <div class="form-group col-sm-4">
+                    <label for="hoursOfSleep">Average Hours of Sleep Daily</label>
+                    <select class="form-control" id="hoursOfSleep" name="hoursSlept" [(ngModel)]="hoursSlept" (change)="updateHumanTimes()">
+                      <option *ngFor="let hour of hours">{{ hour }}</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-sm-4">
+                    <label for="hoursOfWork">Average Hours of Work Daily</label>
+                    <select class="form-control" id="hoursOfWork" name="hoursWorked" [(ngModel)]="hoursWorked" (change)="updateHumanTimes()">
+                      <option *ngFor="let hour of hours">{{ hour }}</option>
+                    </select>
+                  </div>
+                </form>
+                <p>Note: See how the numbers change in the table (at the top of the page) and how the decisions change in the above graphics depending on your adjustments to the above configurations.</p>
               </div>
-        </form>
-        <p id="finePrint">The above sleep and work factors will not be included in a calculaton for hours remaining in a day. They are considered "sunk costs" much like your taxes were considered sunk costs and removed from the income we considered.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
