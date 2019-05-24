@@ -69,7 +69,7 @@ export class AppComponent implements OnInit {
   isBody4Animation = 'void';
   isBody5Animation = 'void';
   displayBody = false;
-  option1;
+  showExplanation = true;
 
   // Form Related Variables
   afterTaxIncomeKnown = "option1";
@@ -78,6 +78,10 @@ export class AppComponent implements OnInit {
   preTaxIncome;
   chosenTaxRate = "30%";
   submitted = false;
+  humanTimes = [0, 0, 0, 0];
+  hours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  hoursSlept = "8";
+  hoursWorked = "8";
 
   ngOnInit() {}
   constructor() {}
@@ -100,6 +104,19 @@ export class AppComponent implements OnInit {
   }
   onSubmit(form: NgForm) {
     this.submitted = true;
+    this.updateHumanTimes();
+    this.showExplanation = false;
+  }
+  updateHumanTimes() {
+    let hoursPerDay = 24 - Number(this.hoursSlept) - Number(this.hoursWorked);
+    let hoursPerYear = hoursPerDay * 365;
+    this.humanTimes[0] = (((this.afterTaxIncome / hoursPerYear) / 4) / 15);
+    this.humanTimes[1] = ((this.afterTaxIncome / hoursPerYear) / 4);
+    this.humanTimes[2] = (this.afterTaxIncome / hoursPerYear);
+    this.humanTimes[3] = (this.afterTaxIncome / hoursPerYear) * 24;
+  }
+  myrandom() {
+    console.log("testing");
   }
   randomizeForm() {
     let random = Math.floor(Math.random() * 5);

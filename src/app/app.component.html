@@ -1,5 +1,5 @@
 <section class="navigation">
-  <nav [@logoAnimation]="isLogoAnimation" class="navbar fixed-top" routerLink="/">
+  <nav [@logoAnimation]="isLogoAnimation" class="navbar sticky-top" routerLink="/">
       <a class="navbar-brand">Time <span>=</span> Money</a>
   </nav>
 </section>
@@ -18,7 +18,7 @@
 <section *ngIf="displayBody" class="body">
   <div class="container">
 
-    <div id="explanation" class="row mt-3">
+    <div *ngIf="showExplanation" id="explanation" class="row mt-3">
       <div class="col">
         <p>
           <span [@body1Animation]="isBody1Animation">Since time is money, you need to think wisely about how you spend your time. </span>
@@ -66,9 +66,9 @@
             </div>
           </div>
           <div id="submit" class="row">
-            <div class="col d-flex flex-column align-items-center justify-content-center">
-              <button type="submit" class="btn btn-primary mt-2 p-2" [disabled]="!f.form.valid">Submit</button>
+            <div class="col-sm-6 offset-sm-3 d-flex flex-row justify-content-between">
               <button id="randomize" type="button" class="btn btn-secondary mt-2 p-2" (click)="randomizeForm()">Randomize</button>
+              <button type="submit" class="btn btn-primary mt-2 p-2" [disabled]="!f.form.valid">Submit</button>
             </div>
           </div>
         </form>
@@ -76,28 +76,82 @@
     </div>
 
     <div id="result" [hidden]="!submitted">
-      <hr>
       <p>You currently make <span>{{ afterTaxIncome | currency }}</span> in after-tax income, lets make some simple observations. The table below shows how much a certain period of time is worth to you financially.</p>
       <p></p>
       <table class="table text-white">
-          <thead>
-            <tr>
-              <th scope="col">1 Hour</th>
-              <th scope="col">15 Minutes</th>
-              <th scope="col">1 Minute</th>
-              <th scope="col">1 Day</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{{ (afterTaxIncome / 8760) | currency }}</td>
-              <td>{{ ((afterTaxIncome / 8760) * 4) | currency }}</td>
-              <td>{{ (((afterTaxIncome / 8760) / 4) / 15) | currency }}</td>
-              <td>{{ (afterTaxIncome / 365) | currency }}</td>
-            </tr>
-          </tbody>
-        </table>
-        <p>You will be able to add your own personal customizations soon. This app is currently under development.</p>
+        <thead>
+          <tr>
+            <th scope="col">1 Minute</th>
+            <th scope="col">15 Minutes</th>
+            <th scope="col">1 Hour</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ humanTimes[0] | currency }}</td>
+            <td>{{ humanTimes[1] | currency }}</td>
+            <td>{{ humanTimes[2] | currency }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Here are some examples of situations you may find yourself in:</p>
+      <div id="animated-result" class="row d-flex justify-content-around">
+        <div class="card mb-2 col-sm-3">
+          <img src="../assets/img/coffee.jpg" class="card-img-top" alt="Coffee">
+          <div class="card-body">
+            <h5 class="card-title">Coffee</h5>
+            <div class="d-flex flex-row justify-content-between">
+              <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-coins pr-1"></i>$2</h6>
+              <h6 class="card-subtitle mb-2 text-muted"><i class="far fa-clock pr-1"></i>5 min</h6>
+            </div>
+            <p class="card-text" *ngIf="(humanTimes[0] * 5) < 2.00">Buying coffee costs you more than spending 5 minutes making it at home.</p>
+            <p class="card-text" *ngIf="(humanTimes[0] * 5) >= 2.00">Buy your coffee. It costs you more making it at home.</p>
+          </div>
+        </div>
+        <div class="card mb-2 col-sm-3">
+          <img src="../assets/img/food-delivery.jpg" class="card-img-top" alt="Food Delivery">
+          <div class="card-body">
+            <h5 class="card-title">Food Delivery</h5>
+            <div class="d-flex flex-row justify-content-between">
+              <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-coins pr-1"></i>$5</h6>
+              <h6 class="card-subtitle mb-2 text-muted"><i class="far fa-clock pr-1"></i>15 min</h6>
+            </div>
+            <p class="card-text" *ngIf="(humanTimes[0] * 15) < 5.00">Walking to pick up food from the restaurant would be a better financial choice.</p>
+            <p class="card-text" *ngIf="(humanTimes[0] * 15) >= 5.00">Pay for food delivery!</p>
+          </div>
+        </div>
+        <div class="card mb-2 col-sm-3">
+          <img src="../assets/img/house-cleaning.jpg" class="card-img-top" alt="House Cleaning">
+          <div class="card-body">
+            <h5 class="card-title">House Cleaning</h5>
+            <div class="d-flex flex-row justify-content-between">
+              <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-coins pr-1"></i>$120</h6>
+              <h6 class="card-subtitle mb-2 text-muted"><i class="far fa-clock pr-1"></i>3 hours</h6>
+            </div>
+            <p class="card-text" *ngIf="(humanTimes[2] * 3) < 120.00">Clean your house yourself, trust me it's worth it!</p>
+            <p class="card-text" *ngIf="(humanTimes[2] * 3) >= 120.00">Hire a maid to clean your house.</p>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div id="configurations">
+        <p>Below are some of the default configurations, feel free to edit them to your liking and see how the above results change!</p>
+        <form class="row text-white container" #fConfig="ngForm">
+            <div class="form-group col-sm-4">
+              <label for="hoursOfSleep">Average Hours of Sleep Daily</label>
+              <select class="form-control" id="hoursOfSleep" name="hoursSlept" [(ngModel)]="hoursSlept" (input)="updateHumanTimes()">
+                <option *ngFor="let hour of hours">{{ hour }}</option>
+              </select>
+            </div>
+            <div class="form-group col-sm-4">
+                <label for="hoursOfWork">Average Hours of Work Daily</label>
+                <select class="form-control" id="hoursOfWork" name="hoursSlept" [(ngModel)]="hoursWorked" (input)="updateHumanTimes()">
+                  <option *ngFor="let hour of hours">{{ hour }}</option>
+                </select>
+              </div>
+        </form>
+        <p id="finePrint">The above sleep and work factors will not be included in a calculaton for hours remaining in a day. They are considered "sunk costs" much like your taxes were considered sunk costs and removed from the income we considered.</p>
+      </div>
     </div>
 
   </div>

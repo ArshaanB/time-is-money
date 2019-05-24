@@ -30,17 +30,31 @@
   BODY SECTION
 */
 .body {
-  margin-top: 4rem;
+  margin-top: 2rem;
 }
 .body p {
   font-family: 'Assistant', Arial, Helvetica, sans-serif;
   font-size: 1.5rem;
   color: white;
 }
-.body #form #submit button {
-  width: 49%;
+.body #form #submit button:nth-child(1) {
+  width: 22%;
+}
+.body #form #submit button:nth-child(2) {
+  width: 72%;
 }
 .body #result p span,
 .body #result table td {
   color: black;
+}
+.body #result #animated-result > div {
+  width: 16rem;
+  padding: 0.5rem;
+}
+.body #result #animated-result p {
+  color: black;
+  font-size: 1rem;
+}
+.body #result #configurations #finePrint {
+  font-size: 0.9rem;
 }
