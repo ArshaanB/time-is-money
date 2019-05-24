@@ -30,19 +30,19 @@
   BODY SECTION
 */
 .body {
-  margin-top: 2rem;
+  margin-top: 0rem;
 }
 .body p {
   font-family: 'Assistant', Arial, Helvetica, sans-serif;
   font-size: 1.5rem;
   color: white;
 }
-.body #form #submit button:nth-child(1) {
+/* .body #form #submit button:nth-child(1) {
   width: 22%;
 }
 .body #form #submit button:nth-child(2) {
   width: 72%;
-}
+} */
 .body #result p span,
 .body #result table td {
   color: black;
@@ -70,4 +70,17 @@
 }
 .body #result #configurations #accordion .bg-blue {
   background-color: black;
+}
+
+
+@media(max-width: 600px) {
+  .attention h1 {
+    font-size: 4rem;
+  }
+  .body .container #form #submit button {
+    width: 90%;
+  }
+  .body .container #form #myradios {
+    display: flex;
+  }
 }

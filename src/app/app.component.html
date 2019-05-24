@@ -34,7 +34,7 @@
           <div class="row">
             <div class="col-sm-6 offset-sm-3 d-flex flex-row justify-content-between">
               <label>Do you know your yearly after-tax income?</label>
-              <div>
+              <div id="myradios">
                 <div id="radioYes" class="form-check d-inline-block mr-2">
                   <input class="form-check-input" type="radio" name="knownAfterTaxIncome" id="yes" value="option1" checked [(ngModel)]="afterTaxIncomeKnown">
                   <label class="form-check-label" for="yes">Yes</label>
@@ -66,9 +66,11 @@
             </div>
           </div>
           <div id="submit" class="row">
-            <div class="col-sm-6 offset-sm-3 d-flex flex-row justify-content-between">
-              <button id="randomize" type="button" class="btn btn-secondary mt-2 p-2" (click)="randomizeForm()">Randomize</button>
-              <button type="submit" class="btn btn-primary mt-2 p-2" [disabled]="!f.form.valid">Submit</button>
+            <div class="col-sm-6 offset-sm-3">
+              <div class="row d-flex flex-row justify-content-around">
+                <button id="randomize" type="button" class="btn btn-secondary mt-2 p-2 col-md-5" (click)="randomizeForm()">Randomize</button>
+                <button type="submit" class="btn btn-primary mt-2 p-2 col-md-5" [disabled]="!f.form.valid">Submit</button>
+              </div>
             </div>
           </div>
         </form>
