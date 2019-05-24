@@ -68,3 +68,6 @@
   color: black;
   font-size: 1rem;
 }
+.body #result #configurations #accordion .bg-blue {
+  background-color: black;
+}

@@ -96,10 +96,10 @@
       </table>
       <p>Here are some examples of situations you may find yourself in:</p>
       <div id="animated-result" class="row d-flex justify-content-around">
-        <div class="card mb-2 col-sm-3">
+        <div class="card mb-2 col-md-3">
           <img src="../assets/img/coffee.jpg" class="card-img-top" alt="Coffee">
           <div class="card-body">
-            <h5 class="card-title">Coffee</h5>
+            <h5 class="card-title">Make Coffee</h5>
             <div class="d-flex flex-row justify-content-between">
               <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-coins pr-1"></i>$2</h6>
               <h6 class="card-subtitle mb-2 text-muted"><i class="far fa-clock pr-1"></i>5 min</h6>
@@ -108,7 +108,7 @@
             <p class="card-text" *ngIf="(humanTimes[0] * 5) >= 2.00">Buy your coffee. It costs you more making it at home.</p>
           </div>
         </div>
-        <div class="card mb-2 col-sm-3">
+        <div class="card mb-2 col-md-3 offset-md-1">
           <img src="../assets/img/food-delivery.jpg" class="card-img-top" alt="Food Delivery">
           <div class="card-body">
             <h5 class="card-title">Food Delivery</h5>
@@ -120,7 +120,7 @@
             <p class="card-text" *ngIf="(humanTimes[0] * 15) >= 5.00">Pay for food delivery!</p>
           </div>
         </div>
-        <div class="card mb-2 col-sm-3">
+        <div class="card mb-2 col-md-3 offset-md-1">
           <img src="../assets/img/house-cleaning.jpg" class="card-img-top" alt="House Cleaning">
           <div class="card-body">
             <h5 class="card-title">House Cleaning</h5>
@@ -136,6 +136,67 @@
       <hr>
       <div id="configurations" class="mb-3">
         <div id="accordion">
+          <div class="card">
+            <div class="card-header bg-blue" id="headingTwo">
+              <h5 class="mb-0">
+                <div class="d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  <button class="btn btn-link collapsed text-white" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Custom Activities
+                  </button>
+                  <i class="fas fa-chevron-down text-white" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"></i>
+                </div>
+              </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+              <div class="card-body">
+                <p>Just like the examples above, you can create your own scenarios, and we'll decide what you should do!</p>
+                <form class="row container" #fActivity="ngForm">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="activity">Create your own activity or select from a list of pre-populated activities:</label>
+                      <select class="form-control" id="activity" name="activityChosen" [(ngModel)]="activityChosen" (change)="updateActivityForm()">
+                        <option *ngFor="let activity of activityOptions" [selected]="isSelectedActivity(activity)">{{ activity }}</option>
+                      </select>
+                      <input *ngIf="activityChosen == 'Create my own...'" type="text" class="form-control" id="activityName" name="customActivityName" [(ngModel)]="customActivityName" placeholder="Enter Activity Name">
+                    </div>
+                    <div class="w-100"></div>
+                    <div *ngIf="activityChosen == 'Create my own...'" class="mb-2">
+                      <label for="timeForActivity">Time lost if doing activity yourself:</label>
+                      <div class="input-group">
+                        <input type="number" class="form-control" id="timeForActivity" name="timeLost" [(ngModel)]="timeLost" placeholder="Enter Time">
+                        <div class="input-group-append">
+                          <span class="input-group-text">minutes</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="w-100"></div>
+                    <div *ngIf="activityChosen == 'Create my own...'" class="">
+                      <label for="costForActivity">Cost of hiring someone else to do the activity:</label>
+                      <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">$</span>
+                          </div>
+                        <input type="number" class="form-control" id="costForActivity" name="activityCost" [(ngModel)]="activityCost" placeholder="Enter Cost">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="card mb-2">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ getActivityName() }}</h5>
+                        <div class="d-flex flex-row justify-content-between">
+                          <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-coins pr-1"></i>${{ activityCost }}</h6>
+                          <h6 class="card-subtitle mb-2 text-muted"><i class="far fa-clock pr-1"></i>{{ timeLost }} minutes</h6>
+                        </div>
+                        <p class="card-text" *ngIf="(humanTimes[0] * timeLost) < activityCost">Perform {{ getActivityName() }} yourself, you'll be better off financially.</p>
+                        <p class="card-text" *ngIf="(humanTimes[0] * timeLost) >= activityCost">Hire someone to do {{ getActivityName() }} for you.</p>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
           <div class="card">
             <div class="card-header" id="headingOne">
               <h5 class="mb-0">

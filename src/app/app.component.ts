@@ -14,7 +14,7 @@ import { NgForm } from '@angular/forms';
       state('void', style({ opacity: 0 })),
       state('notvoid', style({ opacity: 0 })),
       transition('void => notvoid', [
-        animate('0s', keyframes([
+        animate('5s', keyframes([
           style({ opacity: 1, offset: 0.2 }),
           style({ opacity: 1, offset: 0.6 }),
           style({ opacity: 0, offset: 1 })
@@ -29,31 +29,31 @@ import { NgForm } from '@angular/forms';
     trigger('body1Animation', [
       state('void', style({ opacity: 0 })),
       state('notvoid', style({ opacity: 1 })),
-      transition('void => notvoid', [ animate('1s 0s ease-in') ])
+      transition('void => notvoid', [ animate('1s 1s ease-in') ])
       // 1s
     ]),
     trigger('body2Animation', [
       state('void', style({ opacity: 0 })),
       state('notvoid', style({ opacity: 1 })),
-      transition('void => notvoid', [ animate('1s 0s ease-in') ])
+      transition('void => notvoid', [ animate('1s 2.5s ease-in') ])
       // 2.5s
     ]),
     trigger('body3Animation', [
       state('void', style({ opacity: 0 })),
       state('notvoid', style({ opacity: 1 })),
-      transition('void => notvoid', [ animate('2s 0s ease-in') ])
+      transition('void => notvoid', [ animate('2s 4.5s ease-in') ])
       // 4.5s
     ]),
     trigger('body4Animation', [
       state('void', style({ opacity: 0 })),
       state('notvoid', style({ opacity: 1 })),
-      transition('void => notvoid', [ animate('2s 0s ease-in') ])
+      transition('void => notvoid', [ animate('2s 7s ease-in') ])
       // 7s
     ]),
     trigger('body5Animation', [
       state('void', style({ opacity: 0 })),
       state('notvoid', style({ opacity: 1 })),
-      transition('void => notvoid', [ animate('2s 0s ease-in') ])
+      transition('void => notvoid', [ animate('2s 9s ease-in') ])
       // 9s
     ])
   ]
@@ -82,6 +82,11 @@ export class AppComponent implements OnInit {
   hours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   hoursSlept = "8";
   hoursWorked = "8";
+  activityOptions = ["Create my own...", "Wash Laundry", "Make Dinner"];
+  activityChosen = "Wash Laundry";
+  customActivityName = "";
+  timeLost = "30";
+  activityCost = "15";
 
   ngOnInit() {}
   constructor() {}
@@ -123,5 +128,27 @@ export class AppComponent implements OnInit {
     this.chosenTaxRate = rTaxRate[random];
     this.afterTaxIncome = Math.floor(this.preTaxIncome *
                           (1 - (Number(this.chosenTaxRate.slice(0, 2)) / 100)));
+  }
+  updateActivityForm() {
+    if (this.activityChosen == "Wash Laundry") {
+      this.timeLost = "30";
+      this.activityCost = "15";
+    }
+    else if (this.activityChosen == "Make Dinner") {
+      this.timeLost = "45";
+      this.activityCost = "15";
+    }
+  }
+  getActivityName() {
+    if (this.activityChosen == "Create my own...") {
+      return this.customActivityName;
+    }
+    return this.activityChosen;
+  }
+  isSelectedActivity(activity: string) {
+    if (activity == "Wash Laundry") {
+      return "selected";
+    }
+    return "";
   }
 }
