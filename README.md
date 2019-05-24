@@ -1,4 +1,4 @@
 # Time is Money
-Currently under early stages of development. Take a look at other projects instead, such as "Search Engine Battle".
+This is an application called "Time is Money", it can help you decide what to do with your time and money!
 
-http://time-is-money-app.s3-website.us-east-2.amazonaws.com/
+The live website is (http://time-is-money-app.s3-website.us-east-2.amazonaws.com/).
