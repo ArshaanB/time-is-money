@@ -1,6 +1,6 @@
 <section class="navigation">
   <nav [@logoAnimation]="isLogoAnimation" class="navbar sticky-top" routerLink="/">
-      <a class="navbar-brand">Time <span>=</span> Money</a>
+      <a class="navbar-brand">Time <span class="text-primary">=</span> Money</a>
   </nav>
 </section>
 
@@ -190,8 +190,8 @@
                           <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-coins pr-1"></i>${{ activityCost }}</h6>
                           <h6 class="card-subtitle mb-2 text-muted"><i class="far fa-clock pr-1"></i>{{ timeLost }} minutes</h6>
                         </div>
-                        <p class="card-text" *ngIf="(humanTimes[0] * timeLost) < activityCost">Perform {{ getActivityName() }} yourself, you'll be better off financially.</p>
-                        <p class="card-text" *ngIf="(humanTimes[0] * timeLost) >= activityCost">Hire someone to do {{ getActivityName() }} for you.</p>
+                        <p class="card-text" *ngIf="doActivity()">Perform {{ getActivityName() }} yourself, you'll be better off financially.</p>
+                        <p class="card-text" *ngIf="!doActivity()">Hire someone to do {{ getActivityName() }} for you.</p>
                       </div>
                     </div>
                   </div>

@@ -151,4 +151,13 @@ export class AppComponent implements OnInit {
     }
     return "";
   }
+  doActivity() {
+    if ((this.humanTimes[0] * Number(this.timeLost)) <
+        Number(this.activityCost)) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
 }
