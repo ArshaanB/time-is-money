@@ -3,4 +3,4 @@ This is an application called "Time is Money", it can help you decide what to do
 
 "Time is Money" was developed with the primary goal of having an elegant design. This application was designed and developed primarily using Angular, Bootstrap, CSS.
 
-The live website is (http://time-is-money-app.s3-website.us-east-2.amazonaws.com/). Critique it and give me any design-related feedback!
+The live website is (http://time-is-money-app.s3-website.us-east-2.amazonaws.com/). Feel free to critique it and give me any design-related feedback!
