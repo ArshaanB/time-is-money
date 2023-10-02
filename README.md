@@ -1,6 +1,17 @@
 # Time is Money
-This is an application called "Time is Money", it can help you decide what to do with your time and money!
 
-Developed "Time is Money" with the primary goal of producing a website with elegant design. This application was developed using Angular, Angular Animations, Bootstrap and CSS.
+Lets figure out how you should spend your time and money!
 
-The live website is (http://time-is-money-app.s3-website.us-east-2.amazonaws.com/). Feel free to critique it and give me any design-related feedback!
+The elegantly designed website was built using Angular, Angular Animations, Bootstrap and CSS.
+
+Visit the [live website](http://time-is-money-app.s3-website.us-east-2.amazonaws.com/) and try it for yourself!
+
+![Picture 1](1.png)
+
+<pre></pre>
+
+![Picture 2](2.png)
+
+<pre></pre>
+
+![Picture 3](3.png)
